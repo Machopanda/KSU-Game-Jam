@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 6483626421461937463}
   - component: {fileID: 2834229231433479758}
   - component: {fileID: 4454554993388415602}
-  - component: {fileID: 6835239508839289847}
+  - component: {fileID: 6653794458843507168}
   m_Layer: 7
   m_Name: Ghost
   m_TagString: Untagged
@@ -191,7 +191,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &6835239508839289847
+--- !u!114 &6653794458843507168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,6 +200,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8661332153785567922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 622ab19c1a843b44b8524d54c6ee80aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 74ee23a15e940c643abc0ac514f16912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
+  jumpForce: 7
