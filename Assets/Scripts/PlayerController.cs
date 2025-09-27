@@ -7,12 +7,13 @@ public struct PlayerInput
 {
     public float horizontal;
     public bool jumpPressed;
+    public bool jumpHeld;
 
-    
-    public PlayerInput(float h, bool j)
+    public PlayerInput(float h, bool pressed, bool held)
     {
         horizontal = h;
-        jumpPressed = j;
+        jumpPressed = pressed;
+        jumpHeld = held;
     }
 }
 
@@ -28,12 +29,21 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float horizontal;
     private bool jumpPressed;
+    private bool jumpHeld;
     public Vector3 startPosition;
     public GameObject ghostPrefab;
     public LayerMask pickupMask;
     [HideInInspector] public List<PlayerInput> inputs = new List<PlayerInput>();
 
+    // --- Jump Enhancements ---
+    public float coyoteTime = 0.2f;
+    public float jumpBufferTime = 0.2f;
+    public float variableJumpMultiplier = 0.5f;
 
+    private float coyoteTimer = 0f;
+    private float jumpBufferTimer = 0f;
+
+    private bool isGrounded => Mathf.Abs(rb.velocity.y) < 0.01f;
 
     void Awake()
     {
@@ -45,8 +55,38 @@ public class PlayerController : MonoBehaviour
         // Player input
         horizontal = Input.GetAxisRaw("Horizontal");
         jumpPressed = Input.GetButtonDown("Jump");
-        inputs.Add(new PlayerInput(horizontal, jumpPressed));
-        
+        jumpHeld = Input.GetButton("Jump");
+
+        // Record input for ghost
+        inputs.Add(new PlayerInput(horizontal, jumpPressed, jumpHeld));
+
+        // Jump buffer
+        if (jumpPressed)
+            jumpBufferTimer = jumpBufferTime;
+        else
+            jumpBufferTimer -= Time.deltaTime;
+
+        // Coyote timer
+        if (isGrounded)
+            coyoteTimer = coyoteTime;
+        else
+            coyoteTimer -= Time.deltaTime;
+
+        // Jump logic
+        if (jumpBufferTimer > 0f && coyoteTimer > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpBufferTimer = 0f;
+            coyoteTimer = 0f;
+        }
+
+        // Variable jump height
+        if (!jumpHeld && rb.velocity.y > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * variableJumpMultiplier);
+        }
+
+        // Ghost spawn
         if (Input.GetKeyDown(KeyCode.G))
         {
             GameObject ghost = Instantiate(ghostPrefab, startPosition, Quaternion.identity);
@@ -55,21 +95,20 @@ public class PlayerController : MonoBehaviour
             inputs.Clear();
         }
 
-        if (jumpPressed && Mathf.Abs(rb.velocity.y) < 0.01f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
-
+        // Pickup
         if (Input.GetKeyDown(KeyCode.E))
         {
             AttemptPickup();
         }
 
+        // Horizontal movement
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        // Sprite facing
         if (horizontal != 0)
         {
             Vector3 scale = transform.localScale;
-            scale.x = Mathf.Abs(scale.x) * Mathf.Sign(horizontal); // 1 for right, -1 for left
+            scale.x = Mathf.Abs(scale.x) * Mathf.Sign(horizontal);
             transform.localScale = scale;
         }
     }
@@ -79,27 +118,23 @@ public class PlayerController : MonoBehaviour
         if (!holding)
         {
             Vector2 origin = transform.position;
-            Vector2 dir = new Vector2(Mathf.Sign(transform.localScale.x), 0) * transform.right; // 1 = right, -1 = left
+            Vector2 dir = new Vector2(Mathf.Sign(transform.localScale.x), 0) * transform.right;
             RaycastHit2D hit = Physics2D.Raycast(origin, dir, pickupRange, pickupMask);
 
             if (hit.collider != null && hit.collider.CompareTag("Box"))
             {
                 heldObject = hit.collider.gameObject;
-
-                Rigidbody2D rb = heldObject.GetComponent<Rigidbody2D>();
-                if (rb != null)
+                Rigidbody2D rbHeld = heldObject.GetComponent<Rigidbody2D>();
+                if (rbHeld != null)
                 {
-                    // stop motion and make kinematic while held
-                    rb.velocity = Vector2.zero;
-                    rb.angularVelocity = 0f;
-                    rb.bodyType = RigidbodyType2D.Kinematic;
+                    rbHeld.velocity = Vector2.zero;
+                    rbHeld.angularVelocity = 0f;
+                    rbHeld.bodyType = RigidbodyType2D.Kinematic;
                 }
                 heldObject.GetComponent<BoxCollider2D>().enabled = false;
-                // parent to hold point
                 heldObject.transform.position = holdPoint.position;
                 heldObject.transform.rotation = holdPoint.rotation;
-                heldObject.transform.SetParent(holdPoint, worldPositionStays: true);
-
+                heldObject.transform.SetParent(holdPoint, true);
                 holding = true;
             }
         }
@@ -107,16 +142,14 @@ public class PlayerController : MonoBehaviour
         {
             if (heldObject != null)
             {
-                // unparent and move to drop point
-                heldObject.transform.SetParent(null, worldPositionStays: true);
+                heldObject.transform.SetParent(null, true);
                 heldObject.transform.position = dropPoint.position;
                 heldObject.transform.rotation = dropPoint.rotation;
 
-                Rigidbody2D rb = heldObject.GetComponent<Rigidbody2D>();
-                if (rb != null)
-                {
-                    rb.bodyType = RigidbodyType2D.Dynamic; // re-enable physics
-                }
+                Rigidbody2D rbHeld = heldObject.GetComponent<Rigidbody2D>();
+                if (rbHeld != null)
+                    rbHeld.bodyType = RigidbodyType2D.Dynamic;
+
                 heldObject.GetComponent<BoxCollider2D>().enabled = true;
                 heldObject = null;
                 holding = false;
