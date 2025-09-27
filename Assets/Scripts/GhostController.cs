@@ -20,7 +20,6 @@ public class GhostController : MonoBehaviour
 
     void Update()
     {
-        // If there are no inputs or we've reached the end, destroy this ghost
         if (inputs == null || currentFrame >= inputs.Count)
         {
             Destroy(gameObject);
@@ -29,13 +28,19 @@ public class GhostController : MonoBehaviour
 
         PlayerInput input = inputs[currentFrame];
 
-        // Apply horizontal movement
+        // Horizontal movement
         rb.velocity = new Vector2(input.horizontal * speed, rb.velocity.y);
 
-        // Apply jump if grounded
+        // Jump when recorded
         if (input.jumpPressed && Mathf.Abs(rb.velocity.y) < 0.01f)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+
+        // Variable jump height: release jump early if player did
+        if (!input.jumpHeld && rb.velocity.y > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
         currentFrame++;
