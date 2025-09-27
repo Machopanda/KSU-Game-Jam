@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Ghost spawn
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             GameObject ghost = Instantiate(ghostPrefab, startPosition, Quaternion.identity);
             ghost.GetComponent<GhostController>().Initialize(inputs, speed, jumpForce);
