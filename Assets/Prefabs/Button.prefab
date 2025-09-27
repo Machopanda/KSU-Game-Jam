@@ -194,7 +194,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.1}
+  m_Size: {x: 0.99, y: 1.1}
   m_EdgeRadius: 0
 --- !u!114 &8465825812597761191
 MonoBehaviour:
@@ -211,6 +211,12 @@ MonoBehaviour:
   button: {fileID: 550277877622498023}
   pressedOffset: {x: 0, y: -0.15, z: 0}
   moveSpeed: 5
+  onPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  onReleased:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8089902381106163719
 GameObject:
   m_ObjectHideFlags: 0
