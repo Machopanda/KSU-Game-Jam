@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float horizontal;
     private bool jumpPressed;
-    public Transform startPosition;
+    public Vector3 startPosition;
     public GameObject ghostPrefab;
     [HideInInspector]
     public List<PlayerInput> inputs = new List<PlayerInput>();
@@ -42,9 +42,10 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.G))
         { 
-            GameObject ghost = Instantiate(ghostPrefab, startPosition.position, Quaternion.identity);
+            GameObject ghost = Instantiate(ghostPrefab, startPosition, Quaternion.identity);
             ghost.GetComponent<GhostController>().Initialize(inputs, speed, jumpForce);
-            startPosition = transform;
+            startPosition = transform.position;
+            inputs.Clear();
         }
         if (jumpPressed && Mathf.Abs(rb.velocity.y) < 0.01f)
         {

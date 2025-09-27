@@ -20,7 +20,12 @@ public class GhostController : MonoBehaviour
 
     void Update()
     {
-        if (inputs == null || currentFrame >= inputs.Count) return;
+        // If there are no inputs or we've reached the end, destroy this ghost
+        if (inputs == null || currentFrame >= inputs.Count)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         PlayerInput input = inputs[currentFrame];
 

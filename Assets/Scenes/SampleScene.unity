@@ -528,7 +528,7 @@ Transform:
   m_GameObject: {fileID: 863625024}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4651017, y: -0.03917643, z: 0}
+  m_LocalPosition: {x: 2.4651017, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 1.3333333, z: 1.3333333}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 7
-  startPosition: {fileID: 1217358749}
+  startPosition: {x: 2.465102, y: 0, z: 0}
   ghostPrefab: {fileID: 8661332153785567922, guid: 1362f574da39fcb45a33a357dc3f038c, type: 3}
   inputs: []
 --- !u!1 &1217358748
