@@ -16,7 +16,7 @@ TagManager:
   - Player
   - Box
   - Conveyor
-  - 
+  - Background
   - 
   - 
   - 
@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3791093095
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
