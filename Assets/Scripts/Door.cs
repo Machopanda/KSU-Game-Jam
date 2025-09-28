@@ -1,26 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
-{
+{ 
     private bool playerOverlap;
     private bool doorOpen;
+    public String nextScene;
     public UnityEvent OnOpen;
     public UnityEvent OnClose;
     public UnityEvent OnUse;
     public Animator anim;
-    private int triggers = 0;
-    public int requiredTriggers = 1;
-    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             playerOverlap = true;
-            Debug.Log("Player On Door");
+            print("Player On Door");
         }
     }
 
@@ -29,7 +29,7 @@ public class Door : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerOverlap = false;
-            Debug.Log("Player Off Door");
+            print("Player Off Door");
         }
     }
 
@@ -38,53 +38,25 @@ public class Door : MonoBehaviour
         if (playerOverlap && doorOpen && Input.GetKeyDown(KeyCode.E))
         {
             OnUse.Invoke();
-            Debug.Log("LEAVE");
-        }
-        if (triggers < requiredTriggers)
-        {
-            setDoor(false);
-        }
-        if (triggers >= requiredTriggers)
-        {
-            setDoor(true);
+            print("LEAVE");
         }
     }
 
-    private void setDoor(bool open)
+    public void setDoor(bool open)
     {
-        if (doorOpen == open) return; // already in desired state
-
         doorOpen = open;
-
         if (open)
         {
             OnOpen.Invoke();
             anim.SetFloat("direction", 1);
             anim.Play("DOOR", -1, 0);
+
         }
-        else
+        else if (!open)
         {
             OnClose.Invoke();
-            anim.SetFloat("direction", -1); 
+            anim.SetFloat("direction", -1);
+            anim.Play("bubbleAnim",-1,float.NegativeInfinity);
         }
     }
-
-    public void incrementTriggers()
-    {
-        triggers++;
-        if (triggers >= requiredTriggers)
-        {
-            setDoor(true);
-        }
-    }
-
-    public void decrementTriggers()
-    {
-        triggers = Mathf.Max(0, triggers - 1);
-        if (triggers < requiredTriggers)
-        {
-            setDoor(false);
-        }
-    }
-
 }
