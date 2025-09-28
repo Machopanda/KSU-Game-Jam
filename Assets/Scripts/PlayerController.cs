@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
         bool hasHorizontalInput = !Mathf.Approximately(horizontal, 0f); 
         bool isWalking = hasHorizontalInput;
-        playerAnimator.SetBool("IsWalking", isWalking);
+        anim.SetBool("IsWalking", isWalking);
 
         // Record input for ghost
         inputs.Add(new PlayerInput(horizontal, jumpPressed, jumpHeld));
