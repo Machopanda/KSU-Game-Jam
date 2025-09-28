@@ -131,7 +131,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 288006400}
-  - component: {fileID: 288006399}
   - component: {fileID: 288006401}
   m_Layer: 0
   m_Name: GameManager
@@ -140,23 +139,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &288006399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288006398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f050073b3156dac4e941fea2f0fcbed2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerText: {fileID: 384808393}
-  remainingTime: 90
-  onTimeUp:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &288006400
 Transform:
   m_ObjectHideFlags: 0
@@ -186,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnim: {fileID: 1358925663}
+<<<<<<< HEAD:Assets/Scenes/Demo2.unity
 --- !u!1 &384808392
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +365,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: cc02930836511f5459f9b686ed310635, type: 3}
   m_PrefabInstance: {fileID: 641191781}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> Daniel:Assets/Scenes/Level1.unity
 --- !u!1 &666503502
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,7 +555,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2126048624}
   - {fileID: 1358925660}
   m_Father: {fileID: 288006400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -790,6 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97ba5d708520f44ea896ecc296839bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Scenes/Demo2.unity
 --- !u!1 &1238427230
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,6 +892,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> Daniel:Assets/Scenes/Level1.unity
 --- !u!1 &1358925659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,6 +1042,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6642996451273985003, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
   m_PrefabInstance: {fileID: 4619170379576072572}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:Assets/Scenes/Demo2.unity
 --- !u!95 &1692891820
 Animator:
   serializedVersion: 5
@@ -1112,6 +1100,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -25}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+>>>>>>> Daniel:Assets/Scenes/Level1.unity
 --- !u!1001 &1008495506146326730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1582,7 +1571,6 @@ SceneRoots:
   - {fileID: 1434632245}
   - {fileID: 967295299}
   - {fileID: 3023627901083510847}
-  - {fileID: 1238427232}
   - {fileID: 4619170379576072572}
 <<<<<<< HEAD:Assets/Scenes/Level1.unity
   - {fileID: 871358857}
