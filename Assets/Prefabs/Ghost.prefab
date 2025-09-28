@@ -204,4 +204,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 7
+  jumpForce: 10

@@ -45,11 +45,11 @@ public class PlayerController : MonoBehaviour
     private float jumpBufferTimer = 0f;
 
     private bool isGrounded => Mathf.Abs(rb.velocity.y) < 0.01f;
-
+    private Animator anim;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerAnimator = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
             scale.x = Mathf.Abs(scale.x) * Mathf.Sign(horizontal);
             transform.localScale = scale;
         }
+        anim.SetFloat("Speed", MathF.Abs(horizontal));
     }
 
     public void AttemptPickup()
@@ -125,6 +126,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 origin = transform.position;
             Vector2 dir = new Vector2(Mathf.Sign(transform.localScale.x), 0) * transform.right;
+            dir.y += 0.3f;
             RaycastHit2D hit = Physics2D.Raycast(origin, dir, pickupRange, pickupMask);
 
             if (hit.collider != null && hit.collider.CompareTag("Box"))

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ActivatedLift : MonoBehaviour
@@ -10,7 +11,8 @@ public class ActivatedLift : MonoBehaviour
     private bool movingDown = false;
 
     private Rigidbody2D rb;
-
+    public Animator conveyor;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -51,5 +53,17 @@ public class ActivatedLift : MonoBehaviour
     {
         movingDown = true;
         movingUp = false;
+    }
+
+    private void Update()
+    {
+        if (movingUp || movingDown)
+        {
+            conveyor.speed = 1;
+        }
+        else
+        {
+            conveyor.speed = 0;
+        }
     }
 }
