@@ -14,8 +14,11 @@ public class Fragment : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        effect.SetVignetteIntensity(newIntensity);
-        Destroy(gameObject);
+        if (other.CompareTag("Player"))
+        {
+            effect.SetVignetteIntensity(newIntensity);
+            Destroy(gameObject);
+        }
     }
     void Start()
     {
