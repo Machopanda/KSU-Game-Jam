@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Dialogues : MonoBehaviour
 {
     [SerializeField] DialogueData dialogueData;
-    [SerializeField] GameObject dialogueCanvas;
+    [SerializeField] GameObject TriggerBox;
     [SerializeField] TextMeshProUGUI NPCTextDisplay;
                                               
     private int currentNodeIndex = 0; // Current node in the dialogue tree
@@ -20,7 +20,7 @@ public class Dialogues : MonoBehaviour
     public void StartConversation()
     {
         currentNodeIndex = 0;
-        dialogueCanvas.SetActive(true);
+        TriggerBox.SetActive(true);
         ShowCurrentNode();
     }
 
@@ -37,13 +37,13 @@ public class Dialogues : MonoBehaviour
         }
     }
 
-    void ShowDialogue(string NPCText)
+    public void ShowDialogue(string NPCText)
     {
         NPCTextDisplay.text = NPCText;
     }
 
-    void HideDialogue() // TODO: We should not be handling this here
+    public void HideDialogue() // TODO: We should not be handling this here
     {
-        dialogueCanvas.SetActive(false);  // Hides the whole dialogue panel
+        TriggerBox.SetActive(false);  // Hides the whole dialogue panel
     }
 }

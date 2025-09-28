@@ -17,7 +17,7 @@ public class DialogueNode
 {
     [TextArea] // TODO: It should be clear in script what this is doing
     [SerializeField] string NPCText;
-    [SerializeField] PlayerNode[] playerChoices;
+    //[SerializeField] PlayerNode[] playerChoices;
 
     public string GetText() { return NPCText; }
     //public PlayerNode[] getPlayerChoices() { return playerChoices; }

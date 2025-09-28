@@ -43,12 +43,30 @@ public class PlayerController : MonoBehaviour
     private float coyoteTimer = 0f;
     private float jumpBufferTimer = 0f;
 
+    Dialogues words;
+
     private bool isGrounded => Mathf.Abs(rb.velocity.y) < 0.01f;
     private Animator anim;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            words.StartConversation();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            words.HideDialogue();
+        }
     }
 
     void Update()
