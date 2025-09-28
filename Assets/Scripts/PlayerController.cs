@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 startPosition;
     public GameObject ghostPrefab;
     public LayerMask pickupMask;
+    Animator playerAnimator;
     [HideInInspector] public List<PlayerInput> inputs = new List<PlayerInput>();
 
     // --- Jump Enhancements ---
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -56,6 +58,10 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         jumpPressed = Input.GetButtonDown("Jump");
         jumpHeld = Input.GetButton("Jump");
+
+        bool hasHorizontalInput = !Mathf.Approximately(horizontal, 0f); 
+        bool isWalking = hasHorizontalInput;
+        playerAnimator.SetBool("IsWalking", isWalking);
 
         // Record input for ghost
         inputs.Add(new PlayerInput(horizontal, jumpPressed, jumpHeld));
