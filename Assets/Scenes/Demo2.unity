@@ -1911,16 +1911,48 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7904794409904637888, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
+      propertyPath: OnUse.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904794409904637888, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
       propertyPath: OnOpen.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7904794409904637888, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
+      propertyPath: OnUse.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904794409904637888, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
+      propertyPath: OnUse.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 288006401}
     - target: {fileID: 7904794409904637888, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
       propertyPath: OnOpen.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7904794409904637888, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
+      propertyPath: OnUse.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904794409904637888, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
       propertyPath: OnOpen.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904794409904637888, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
+      propertyPath: OnUse.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904794409904637888, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
+      propertyPath: OnUse.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904794409904637888, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
+      propertyPath: OnUse.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904794409904637888, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
+      propertyPath: OnUse.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8634731114427586041, guid: 9dde03d9fa9032b43a36d5f3a9778928, type: 3}
       propertyPath: m_SortingOrder
