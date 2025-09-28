@@ -12,7 +12,7 @@ public class Door : MonoBehaviour
     public UnityEvent OnClose;
     public UnityEvent OnUse;
     public Animator anim;
-    private int triggers;
+    private int triggers = 0;
     public int requiredTriggers = 1;
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -57,8 +57,7 @@ public class Door : MonoBehaviour
         else
         {
             OnClose.Invoke();
-            anim.SetFloat("direction", -1);
-            anim.Play("DOOR", -1, float.NegativeInfinity);
+            anim.SetFloat("direction", -1); 
         }
     }
 
