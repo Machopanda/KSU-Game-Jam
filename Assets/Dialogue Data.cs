@@ -5,10 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerNode
 {
-    [SerializeField] string choiceText;
+    //[SerializeField] string choiceText;
     [SerializeField] int branchPath;
 
-    public string GetChoiceText() { return choiceText; }
+    //public string GetChoiceText() { return choiceText; }
     public int GetBranchPath() { return branchPath; }
 }
 
@@ -20,7 +20,7 @@ public class DialogueNode
     [SerializeField] PlayerNode[] playerChoices;
 
     public string GetText() { return NPCText; }
-    public PlayerNode[] getPlayerChoices() { return playerChoices; }
+    //public PlayerNode[] getPlayerChoices() { return playerChoices; }
 
 }
 //Allow this ScriptableObject as an asset in the editor
