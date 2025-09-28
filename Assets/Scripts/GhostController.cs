@@ -5,6 +5,7 @@ public class GhostController : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
+    public Animator anim;
     private Rigidbody2D rb;
 
     private List<PlayerInput> inputs;
@@ -20,6 +21,7 @@ public class GhostController : MonoBehaviour
 
     void Update()
     {
+        
         if (inputs == null || currentFrame >= inputs.Count)
         {
             Destroy(gameObject);
@@ -27,7 +29,12 @@ public class GhostController : MonoBehaviour
         }
 
         PlayerInput input = inputs[currentFrame];
-
+        if (input.horizontal != 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * Mathf.Sign(input.horizontal);
+            transform.localScale = scale;
+        }
         // Horizontal movement
         rb.velocity = new Vector2(input.horizontal * speed, rb.velocity.y);
 
@@ -44,5 +51,7 @@ public class GhostController : MonoBehaviour
         }
 
         currentFrame++;
+        anim.SetFloat("Speed", Mathf.Abs(input.horizontal));
+
     }
 }
