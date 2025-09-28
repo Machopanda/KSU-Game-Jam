@@ -40,6 +40,14 @@ public class Door : MonoBehaviour
             OnUse.Invoke();
             Debug.Log("LEAVE");
         }
+        if (triggers < requiredTriggers)
+        {
+            setDoor(false);
+        }
+        if (triggers >= requiredTriggers)
+        {
+            setDoor(true);
+        }
     }
 
     private void setDoor(bool open)
